@@ -28,6 +28,10 @@ Declare every response DTO with `@ApiEnvelopeResponse(Dto)`. It does two things:
 
 Do not use `@ZodSerializerDto` or `@ZodResponse` directly; they document the bare DTO.
 
+**Dates:** `z.date()` in a response DTO crashes the app at startup (`Date cannot be represented
+in JSON Schema`). Use a codec field and `createZodDto(schema, { codec: true })`; see
+[EXAMPLE.md](EXAMPLE.md#4-presentation-dtos).
+
 ## Pagination
 
 Offset based. Query DTO: `PaginationQueryDto` (`shared/dto/`).

@@ -196,6 +196,9 @@ Do not hand-order imports against this; run the formatter.
   `@ZodSerializerDto` / `@ZodResponse` directly. Paginated endpoints take `PaginationQueryDto`
   (extend `PaginationQuerySchema` for feature filters/sorting), return
   `PageDto.of(items, total, query)` and use `@ApiEnvelopeResponse(UserResponseDto, { paginated: true })`.
+- Dates in response DTOs: `z.date()` cannot be turned into OpenAPI and crashes the app at startup.
+  Use a `z.codec(z.iso.datetime(), z.date(), …)` field and `createZodDto(schema, { codec: true })`
+  (see `docs/EXAMPLE.md`).
 - Controllers return plain data; `ApiResponseInterceptor` wraps it, do not build the envelope by hand.
 - Invalid input always returns HTTP 400 in the shared error format
   (handled by a filter in `shared/filter/`).

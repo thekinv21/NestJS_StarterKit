@@ -116,6 +116,8 @@ Wire format: [API.md](API.md#errors).
 
 ## Adding a feature (example: `user`)
 
+The full code for these steps is in [EXAMPLE.md](EXAMPLE.md).
+
 1. `use-case/user/model/User.ts` — plain business type, no ORM types.
 2. `use-case/user/port/UserRepositoryPort.ts` — interface + `USER_REPOSITORY` token.
 3. `use-case/user/GetUserUseCase.ts` — one class, one `execute()`, throws `AppError` subclasses.

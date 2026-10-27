@@ -33,6 +33,7 @@ Requires [Bun](https://bun.sh) and Node.js 20+.
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Layers, request lifecycle, adding a feature       |
 | [docs/API.md](docs/API.md)                   | Response envelope, errors, pagination, rate limit |
 | [docs/SECURITY.md](docs/SECURITY.md)         | What is protected, known gaps before production   |
+| [docs/EXAMPLE.md](docs/EXAMPLE.md)           | A complete `user` feature across all layers       |
 | [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md)   | Scripts, testing, commit rules                    |
 | [docs/PRD.md](docs/PRD.md)                   | Goals and scope                                   |
 | [CLAUDE.md](CLAUDE.md)                       | The same rules, compact, for AI coding agents     |
