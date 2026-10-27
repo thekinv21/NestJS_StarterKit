@@ -1,17 +1,42 @@
 {
   "name": "nestjs-starterkit-forge",
-  "version": "0.1.0",
-  "description": "Create a NestJS 11 API with layered architecture, Zod validation, a standard response envelope, rate limiting and Swagger already wired.",
+  "version": "0.1.1",
+  "description": "Scaffold a production-minded NestJS 11 API: layered architecture, Zod validation and serialization, standard response envelope, global error handling, rate limiting, request logging and Swagger, already wired.",
   "keywords": [
     "nestjs",
+    "nest",
+    "nestjs-starter",
+    "nestjs-boilerplate",
+    "nestjs-template",
     "starter",
-    "template",
+    "starter-kit",
     "boilerplate",
+    "template",
+    "scaffold",
+    "generator",
+    "create",
+    "cli",
+    "api",
+    "rest-api",
+    "backend",
+    "typescript",
     "zod",
+    "nestjs-zod",
+    "validation",
+    "swagger",
+    "openapi",
     "clean-architecture",
-    "create"
+    "hexagonal-architecture",
+    "layered-architecture",
+    "rate-limit",
+    "throttler",
+    "helmet",
+    "bun"
   ],
-  "author": "Vadim Kiniabaev",
+  "author": {
+    "name": "Vadim Kiniabaev",
+    "url": "https://github.com/thekinv21"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -26,7 +51,8 @@
   },
   "files": [
     "index.js",
-    "template"
+    "template",
+    "LICENSE"
   ],
   "scripts": {
     "prepack": "node copy-template.js"
