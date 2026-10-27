@@ -22,7 +22,14 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "create"
+  ]
 }

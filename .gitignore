@@ -1,5 +1,6 @@
 # compiled output
 /dist
+/create/template
 /node_modules
 /build
 
