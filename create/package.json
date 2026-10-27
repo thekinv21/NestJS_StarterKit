@@ -1,5 +1,5 @@
 {
-  "name": "create-nestkit",
+  "name": "nestjs-starterkit-forge",
   "version": "0.1.0",
   "description": "Create a NestJS 11 API with layered architecture, Zod validation, a standard response envelope, rate limiting and Swagger already wired.",
   "keywords": [
@@ -22,7 +22,7 @@
   "bugs": "https://github.com/thekinv21/NestJS_StarterKit/issues",
   "type": "module",
   "bin": {
-    "create-nestkit": "index.js"
+    "nestjs-starterkit-forge": "index.js"
   },
   "files": [
     "index.js",
