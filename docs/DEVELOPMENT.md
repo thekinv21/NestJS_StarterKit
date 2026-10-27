@@ -58,7 +58,7 @@ The ones people trip over most:
 - The `pre-commit` hook runs `format`, `lint` and `build`. Keep them green; do not bypass
   the hook with `--no-verify`.
 
-## Publishing the `create-nestjs-starterkit` CLI
+## Publishing the `create-nestkit` CLI
 
 The starter is distributed as a `create-*` package in [`create/`](../create). It holds no copy
 of the starter in git: on `npm pack` / `npm publish`, its `prepack` script copies every

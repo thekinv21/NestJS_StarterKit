@@ -1,4 +1,4 @@
-# NestJS StarterKit
+# NestKit
 
 A NestJS 11 API starter where the cross-cutting parts are already decided, wired and
 enforced, so the first commit can be about the business feature.
@@ -16,7 +16,7 @@ enforced, so the first commit can be about the business feature.
 ## Create a project
 
 ```bash
-bunx create-nestjs-starterkit my-api   # or: npx create-nestjs-starterkit my-api
+bunx create-nestkit my-api   # or: npx create-nestkit my-api
 cd my-api
 cp .env.example .env
 bun run start:dev

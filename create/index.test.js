@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 const here = import.meta.dir;
-const workDir = mkdtempSync(join(tmpdir(), 'create-starterkit-'));
+const workDir = mkdtempSync(join(tmpdir(), 'create-nestkit-'));
 const project = join(workDir, 'my-api');
 
 beforeAll(() => {

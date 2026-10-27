@@ -54,7 +54,7 @@ already decided, wired and enforced, so the first commit is about the business f
 
 ## Distribution
 
-Published to npm as the `create-nestjs-starterkit` CLI: `bunx create-nestjs-starterkit my-api`
+Published to npm as the `create-nestkit` CLI: `bunx create-nestkit my-api`
 copies the starter into a new folder, names the package, runs `git init` and `bun install`.
 The generated project is the team's own code from then on; it does not receive updates.
 

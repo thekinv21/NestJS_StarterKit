@@ -1,4 +1,4 @@
-# create-nestjs-starterkit
+# create-nestkit
 
 Create a new NestJS 11 API with the cross-cutting parts already decided and wired:
 layered (Clean Architecture style) structure enforced by ESLint, Zod validation, response
@@ -6,8 +6,8 @@ serialization, one success envelope and one error format, rate limiting, request
 Swagger generated from Zod, and commit hooks.
 
 ```bash
-bunx create-nestjs-starterkit my-api
-# or: npx create-nestjs-starterkit my-api
+bunx create-nestkit my-api
+# or: npx create-nestkit my-api
 
 cd my-api
 cp .env.example .env

@@ -18,9 +18,7 @@ const skipInstall = args.includes('--skip-install');
 const target = args.find((arg) => !arg.startsWith('--'));
 
 if (!target) {
-  console.error(
-    'Usage: create-nestjs-starterkit <project-directory> [--skip-install]',
-  );
+  console.error('Usage: create-nestkit <project-directory> [--skip-install]');
   process.exit(1);
 }
 
