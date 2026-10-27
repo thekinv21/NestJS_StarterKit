@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "NestJS 11 starter with layered architecture, Zod validation, response envelope, rate limiting and Swagger.",
   "author": "Vadim Kiniabaev",
-  "private": true,
   "license": "MIT",
   "repository": {
     "type": "git",
