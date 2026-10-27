@@ -52,6 +52,12 @@ already decided, wired and enforced, so the first commit is about the business f
 - Frontend, GraphQL, WebSockets, microservice transports.
 - Deployment manifests (Docker, Kubernetes, CI pipelines) — each team owns its own.
 
+## Distribution
+
+Published to npm as the `create-nestjs-starterkit` CLI: `bunx create-nestjs-starterkit my-api`
+copies the starter into a new folder, names the package, runs `git init` and `bun install`.
+The generated project is the team's own code from then on; it does not receive updates.
+
 ## Success criteria
 
 - A developer can add a CRUD feature by following ARCHITECTURE.md without touching `shared/`.

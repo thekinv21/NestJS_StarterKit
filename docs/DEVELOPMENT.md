@@ -25,7 +25,7 @@ Swagger UI: http://localhost:4200/docs (not available when `NODE_ENV=production`
 | `bun run start:prod`  | Run the compiled app.                                  |
 | `bun run format`      | Prettier, including automatic import sorting.          |
 | `bun run lint`        | ESLint with auto-fix; includes layer and barrel rules. |
-| `bun run test`        | `bun test`: runs every `*.spec.ts`.                    |
+| `bun run test`        | `bun test`: runs every `*.spec.ts` / `*.test.js`.      |
 
 ## Code conventions
 
@@ -46,8 +46,8 @@ The ones people trip over most:
   end-to-end: create the app from a test module that imports `AppModule` plus a small test
   controller, call `app.listen(0)`, and send real requests with `fetch`.
 
-> There are currently no spec files, so `bun test` exits with an error. Add a pipeline test
-> before the first feature, then add `bun test` to `.husky/pre-commit`.
+> `src/` has no spec files yet. Add a pipeline test before the first feature, then add
+> `bun run test` to `.husky/pre-commit`.
 
 ## Git
 
@@ -57,3 +57,21 @@ The ones people trip over most:
   Example: `feat:[master][Vadim Kiniabaev]: add user module`
 - The `pre-commit` hook runs `format`, `lint` and `build`. Keep them green; do not bypass
   the hook with `--no-verify`.
+
+## Publishing the `create-nestjs-starterkit` CLI
+
+The starter is distributed as a `create-*` package in [`create/`](../create). It holds no copy
+of the starter in git: on `npm pack` / `npm publish`, its `prepack` script copies every
+git-tracked file of this repo (except `create/`, `bun.lock` and `LICENSE`) into
+`create/template/`.
+
+```bash
+bun test create/                      # CLI test: generates a project into a temp dir
+cd create
+npm version patch                     # or minor / major
+npm pack --dry-run                    # check the file list
+npm publish                           # needs `npm login`
+```
+
+Commit before publishing: the template is built from the working tree of tracked files,
+so uncommitted edits would ship but untracked new files would not.

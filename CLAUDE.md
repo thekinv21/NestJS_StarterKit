@@ -253,7 +253,7 @@ export class UserNotFoundError extends AppError {
   (a middleware so guard rejections and 404s are logged); registers globally
   `GlobalValidationPipe` (`APP_PIPE`), `ApiResponseInterceptor` → `PageSerializerInterceptor`
   (`APP_INTERCEPTOR`, in this order — serialization must run before the envelope is built)
-  and `GlobalExceptionFilter` (`APP_FILTER`). `src/app/AppModule.spec.ts` guards this pipeline.
+  and `GlobalExceptionFilter` (`APP_FILTER`).
 - New feature modules are added to `AppModule.imports`.
 
 ## Enforcement
@@ -265,7 +265,7 @@ export class UserNotFoundError extends AppError {
 
 ## Testing
 
-- Test runner: `bun test` (`bun:test` API). Unit tests sit next to the file: `CreateUserUseCase.spec.ts`.
+- Test runner: `bun test` (`bun:test` API, `bun run test` passes when there are no tests yet). Unit tests sit next to the file: `CreateUserUseCase.spec.ts`.
 - Use-cases are tested with fake port implementations, not a real DB.
 
 ## Git
