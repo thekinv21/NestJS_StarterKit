@@ -36,13 +36,19 @@ means the design is wrong: introduce a port instead of disabling the rule.
 in `app/` binds the two:
 
 ```ts
-// use-case/user/port/UserRepositoryPort.ts
+/**
+ * use-case/user/port/UserRepositoryPort.ts
+ */
+
 export const USER_REPOSITORY = Symbol('USER_REPOSITORY');
 export interface UserRepositoryPort {
   findById(id: string): Promise<User | null>;
 }
 
-// app/user/UserModule.ts
+/**
+ * app/user/UserModule.ts
+ */
+
 providers: [
   GetUserUseCase,
   { provide: USER_REPOSITORY, useClass: PrismaUserRepository },

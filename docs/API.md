@@ -116,7 +116,12 @@ Every error, from any source, has this shape:
 - When exceeded: HTTP 429 in the error shape, with a `Retry-After` header (seconds).
 
 ```ts
-@RateLimit(5, 60) // login: 5 attempts per minute per IP
+
+/**
+ *  login: 5 attempts per minute per IP
+ */
+
+@RateLimit(5, 60)
 @Post('login')
 login() {}
 ```

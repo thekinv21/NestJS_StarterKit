@@ -96,16 +96,24 @@ Every feature uses a sub-folder named after the feature in each layer
 - Feature modules in `app/` bind ports to adapters:
 
 ```ts
-// use-case/user/GetUserUseCase.ts
+/**
+ * use-case/user/GetUserUseCase.ts
+ */
 import type { UserRepositoryPort } from './port/UserRepositoryPort';
 
-// use-case/user/port/UserRepositoryPort.ts
+/**
+ * use-case/user/port/UserRepositoryPort.ts
+ */
+
 export const USER_REPOSITORY = Symbol('USER_REPOSITORY');
 export interface UserRepositoryPort {
   findById(id: string): Promise<User | null>;
 }
 
-// `import type` required (isolatedModules)
+/**
+ * `import type` required (isolatedModules)
+ */
+
 @Injectable()
 export class GetUserUseCase {
   constructor(
@@ -116,7 +124,10 @@ export class GetUserUseCase {
   }
 }
 
-// app/user/UserModule.ts
+/**
+ *  app/user/UserModule.ts
+ */
+
 @Module({
   controllers: [UserController],
   providers: [
