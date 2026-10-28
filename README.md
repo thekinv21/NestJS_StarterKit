@@ -5,6 +5,8 @@
 A ready-to-use NestJS 11 API template. Validation, error handling, response format, rate
 limiting and Swagger are already set up — you start with your business code.
 
+![Logo](public/logo.png)
+
 ## Features
 
 - Layered architecture, with import rules checked by ESLint
