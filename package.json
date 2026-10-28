@@ -8,6 +8,30 @@
     "type": "git",
     "url": "git+https://github.com/thekinv21/NestJS_StarterKit.git"
   },
+  "keywords": [
+    "nestjs",
+    "starter",
+    "boilerplate",
+    "zod",
+    "swagger",
+    "clean-architecture"
+  ],
+  "homepage": "https://github.com/thekinv21/NestJS_StarterKit#readme",
+  "bugs": "https://github.com/thekinv21/NestJS_StarterKit/issues",
+  "files": [
+    "src",
+    "docs",
+    ".env.example",
+    ".prettierrc",
+    "eslint.config.mjs",
+    "nest-cli.json",
+    "tsconfig.json",
+    "tsconfig.build.json",
+    "CLAUDE.md"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\"",
