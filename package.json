@@ -1,9 +1,8 @@
 {
   "name": "nestjs_starter_kit_forge",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "NestJS 11 starter with layered architecture, Zod validation, response envelope, rate limiting and Swagger.",
   "author": "Vadim Kiniabaev",
-  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thekinv21/NestJS_StarterKit.git"

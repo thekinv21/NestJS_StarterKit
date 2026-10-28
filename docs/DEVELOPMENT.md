@@ -62,7 +62,7 @@ The ones people trip over most:
 
 The starter is distributed as a `create-*` package in [`create/`](../create). It holds no copy
 of the starter in git: on `npm pack` / `npm publish`, its `prepack` script copies every
-git-tracked file of this repo (except `create/`, `bun.lock` and `LICENSE`) into
+git-tracked file of this repo (except `create/` and `bun.lock`) into
 `create/template/`.
 
 ```bash
