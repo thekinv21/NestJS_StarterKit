@@ -65,10 +65,14 @@ export class GlobalExceptionFilter implements ExceptionFilter {
       this.logServerError(exception, request);
     }
 
-    // e.g. a streamed response failed midway — nothing left to send
+    /**
+     * e.g. a streamed response failed midway — nothing left to send
+     */
     if (response.headersSent) return;
 
-    // 5xx internals are never exposed to the client
+    /**
+     * 5xx internals are never exposed to the client
+     */
     const { message, errors } =
       statusCode >= SERVER_ERROR_STATUS
         ? { message: INTERNAL_MESSAGE, errors: undefined }

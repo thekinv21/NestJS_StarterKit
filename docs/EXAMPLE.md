@@ -42,7 +42,10 @@ Business types, the port the use-cases depend on, and one class per operation.
 Nothing here knows about HTTP, Express or a database.
 
 ```ts
-// src/use-case/user/model/User.ts
+/**
+ * src/use-case/user/model/User.ts
+ */
+
 export type User = {
   id: string;
   email: string;
@@ -53,7 +56,9 @@ export type User = {
 ```
 
 ```ts
-// src/use-case/user/port/UserRepositoryPort.ts
+/**
+ * src/use-case/user/port/UserRepositoryPort.ts
+ */
 import type { User } from '../model/User';
 
 export const USER_REPOSITORY = Symbol('USER_REPOSITORY');
@@ -67,7 +72,9 @@ export interface UserRepositoryPort {
 ```
 
 ```ts
-// src/use-case/user/CreateUserUseCase.ts
+/**
+ * src/use-case/user/CreateUserUseCase.ts
+ */
 import { Inject, Injectable } from '@nestjs/common';
 
 import { createHash } from 'node:crypto';
@@ -96,7 +103,9 @@ export class CreateUserUseCase {
     return this.users.create({
       email: input.email,
       name: input.name,
-      // Example only: use argon2 or bcrypt for real passwords
+      /**
+       * Example only: use argon2 or bcrypt for real passwords
+       */
       passwordHash: createHash('sha256').update(input.password).digest('hex'),
     });
   }
@@ -104,7 +113,9 @@ export class CreateUserUseCase {
 ```
 
 ```ts
-// src/use-case/user/GetUserUseCase.ts
+/**
+ * src/use-case/user/GetUserUseCase.ts
+ */
 import { Inject, Injectable } from '@nestjs/common';
 
 import { UserNotFoundError } from '@/shared/error';
@@ -131,7 +142,9 @@ export class GetUserUseCase {
 ```
 
 ```ts
-// src/use-case/user/ListUsersUseCase.ts
+/**
+ * src/use-case/user/ListUsersUseCase.ts
+ */
 import { Inject, Injectable } from '@nestjs/common';
 
 import type { User } from './model/User';
@@ -153,7 +166,9 @@ export class ListUsersUseCase {
 ```
 
 ```ts
-// src/use-case/user/index.ts
+/**
+ * src/use-case/user/index.ts
+ */
 export * from './CreateUserUseCase';
 export * from './GetUserUseCase';
 export * from './ListUsersUseCase';
@@ -166,18 +181,28 @@ export * from './port/UserRepositoryPort';
 `kind` says what went wrong; `GlobalExceptionFilter` turns it into the HTTP status.
 
 ```ts
-// src/shared/error/UserNotFoundError.ts
+/**
+ * src/shared/error/UserNotFoundError.ts
+ */
 import { AppError } from './AppError';
 
 export class UserNotFoundError extends AppError {
-  readonly kind = 'NOT_FOUND'; // → 404
+  /**
+   * → 404
+   */
+  readonly kind = 'NOT_FOUND';
 }
 
-// src/shared/error/EmailTakenError.ts
+/**
+ * src/shared/error/EmailTakenError.ts
+ */
 import { AppError } from './AppError';
 
 export class EmailTakenError extends AppError {
-  readonly kind = 'CONFLICT'; // → 409
+  /**
+   * → 409
+   */
+  readonly kind = 'CONFLICT';
 }
 ```
 
@@ -193,7 +218,9 @@ export * from './UserNotFoundError';
 Implements the port. Swap this class for `PrismaUserRepository` later.
 
 ```ts
-// src/infrastructure/database/repository/InMemoryUserRepository.ts
+/**
+ * src/infrastructure/database/repository/InMemoryUserRepository.ts
+ */
 import { Injectable } from '@nestjs/common';
 
 import { randomUUID } from 'node:crypto';
@@ -225,7 +252,9 @@ export class InMemoryUserRepository implements UserRepositoryPort {
   }
 }
 
-// src/infrastructure/database/repository/index.ts
+/**
+ * src/infrastructure/database/repository/index.ts
+ */
 export * from './InMemoryUserRepository';
 ```
 
@@ -235,7 +264,9 @@ Request DTOs validate input. The response DTO decides which fields are sent:
 `passwordHash` is not in the schema, so it is removed from every response.
 
 ```ts
-// src/presentation/dto/user/request/CreateUserRequestDto.ts
+/**
+ * src/presentation/dto/user/request/CreateUserRequestDto.ts
+ */
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
@@ -251,7 +282,9 @@ export class CreateUserRequestDto extends createZodDto(
 ```
 
 ```ts
-// src/presentation/dto/user/request/GetUserRequestDto.ts — route params are validated too
+/**
+ * src/presentation/dto/user/request/GetUserRequestDto.ts — route params are validated too
+ */
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
@@ -261,11 +294,15 @@ export class GetUserRequestDto extends createZodDto(GetUserRequestSchema) {}
 ```
 
 ```ts
-// src/presentation/dto/user/response/UserResponseDto.ts
+/**
+ * src/presentation/dto/user/response/UserResponseDto.ts
+ */
 import { createZodDto } from 'nestjs-zod';
 import { z } from 'zod';
 
-// Date in code, ISO string in JSON and in the OpenAPI document
+/**
+ * Date in code, ISO string in JSON and in the OpenAPI document
+ */
 const isoDate = z.codec(z.iso.datetime(), z.date(), {
   decode: (iso) => new Date(iso),
   encode: (date) => date.toISOString(),
@@ -288,7 +325,10 @@ export class UserResponseDto extends createZodDto(UserResponseSchema, {
 > `createZodDto(schema, { codec: true })`.
 
 ```ts
-// src/presentation/dto/user/index.ts
+/**
+ * src/presentation/dto/user/index.ts
+ */
+
 export * from './request/CreateUserRequestDto';
 export * from './request/GetUserRequestDto';
 export * from './response/UserResponseDto';
@@ -300,7 +340,9 @@ Thin: validated input in, one use-case call, plain data out. The envelope, seria
 errors and Swagger docs all come from the global setup and `@ApiEnvelopeResponse`.
 
 ```ts
-// src/presentation/controller/user/UserController.ts
+/**
+ * src/presentation/controller/user/UserController.ts
+ */
 import {
   Body,
   Controller,
@@ -337,7 +379,10 @@ export class UserController {
   ) {}
 
   @Post()
-  @RateLimit(5, 60) // signup: 5 per minute per IP
+  /**
+   * signup: 5 per minute per IP
+   */
+  @RateLimit(5, 60)
   @ApiEnvelopeResponse(UserResponseDto, { status: HttpStatus.CREATED })
   create(@Body() body: CreateUserRequestDto) {
     return this.createUser.execute(body);
@@ -360,7 +405,9 @@ export class UserController {
   }
 }
 
-// src/presentation/controller/user/index.ts
+/**
+ * src/presentation/controller/user/index.ts
+ */
 export * from './UserController';
 ```
 
@@ -369,7 +416,9 @@ export * from './UserController';
 The feature module binds the port to the adapter; `AppModule` imports the feature module.
 
 ```ts
-// src/app/user/UserModule.ts
+/**
+ * src/app/user/UserModule.ts
+ */
 import { Module } from '@nestjs/common';
 
 import { UserController } from '@/presentation/controller/user';
@@ -394,21 +443,30 @@ import {
 })
 export class UserModule {}
 
-// src/app/user/index.ts
+/**
+ * src/app/user/index.ts
+ */
 export * from './UserModule';
 ```
 
 ```ts
-// src/app/AppModule.ts
+/**
+ * src/app/AppModule.ts
+ */
 import { UserModule } from './user';
 
 @Module({
   imports: [
     AppConfigModule,
-    UserModule, // ← add
+    /**
+     * ← add
+     */
+    UserModule,
     ThrottlerModule.forRootAsync({ /* unchanged */ }),
   ],
-  // ...
+  /**
+   * ...
+   */
 })
 ```
 
@@ -455,7 +513,9 @@ Swagger UI at `/docs` shows each endpoint with the real envelope, `data` typed a
 Use-cases need no Nest app and no database — pass a fake port:
 
 ```ts
-// src/use-case/user/GetUserUseCase.spec.ts
+/**
+ * src/use-case/user/GetUserUseCase.spec.ts
+ */
 import { describe, expect, it } from 'bun:test';
 
 import { UserNotFoundError } from '@/shared/error';
